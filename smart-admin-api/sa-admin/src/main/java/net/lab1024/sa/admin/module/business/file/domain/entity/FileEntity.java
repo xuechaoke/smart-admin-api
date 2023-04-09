@@ -34,6 +34,8 @@ public class FileEntity {
      */
     private String fileKey;
 
+    private String desc;
+
 
     private Long categoryId;;
 

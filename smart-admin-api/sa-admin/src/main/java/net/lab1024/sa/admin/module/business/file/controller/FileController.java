@@ -1,9 +1,13 @@
 package net.lab1024.sa.admin.module.business.file.controller;
 
 import cn.hutool.extra.servlet.ServletUtil;
+import net.lab1024.sa.admin.module.business.file.domain.form.FileQuery;
+import net.lab1024.sa.admin.module.business.file.domain.form.FileQueryForm;
 import net.lab1024.sa.admin.module.business.file.domain.form.FileUploadForm;
 import net.lab1024.sa.admin.module.business.file.domain.vo.FileUploadVO;
+import net.lab1024.sa.admin.module.business.file.domain.vo.FileVO;
 import net.lab1024.sa.admin.module.business.file.service.FileService;
+import net.lab1024.sa.common.common.domain.PageResult;
 import net.lab1024.sa.common.common.domain.ResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +39,11 @@ public class FileController {
     public ResponseEntity<Object> downLoad(@RequestParam String fileKey, HttpServletRequest request) {
         String userAgent = ServletUtil.getHeaderIgnoreCase(request, "USER-AGENT");
         return fileService.downloadByFileKey(fileKey, userAgent);
+    }
+
+    @PostMapping("/goods/query")
+    public ResponseDTO<PageResult<FileVO>> query(@RequestBody FileQueryForm query) {
+        return ResponseDTO.ok(fileService.queryPage(query));
     }
 
 

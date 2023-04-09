@@ -13,31 +13,22 @@ import net.lab1024.sa.admin.module.business.file.domain.vo.FileDownloadVO;
 import net.lab1024.sa.admin.module.business.file.domain.vo.FileMetadataVO;
 import net.lab1024.sa.admin.module.business.file.domain.vo.FileUploadVO;
 import net.lab1024.sa.admin.module.business.file.domain.vo.FileVO;
-import net.lab1024.sa.common.common.code.SystemErrorCode;
 import net.lab1024.sa.common.common.code.UserErrorCode;
 import net.lab1024.sa.common.common.domain.PageResult;
 import net.lab1024.sa.common.common.domain.ResponseDTO;
 import net.lab1024.sa.common.common.util.SmartPageUtil;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static sun.net.www.protocol.http.HttpURLConnection.userAgent;
 
 
 @Service
@@ -141,8 +132,7 @@ public class FileService {
     public PageResult<FileVO> queryPage(FileQueryForm queryForm) {
         Page<?> page = SmartPageUtil.convert2PageQuery(queryForm);
         List<FileVO> list = fileDao.queryPage(page, queryForm);
-        PageResult<FileVO> pageResult = SmartPageUtil.convert2PageResult(page, list);
-        return pageResult;
+        return SmartPageUtil.convert2PageResult(page, list);
     }
 
     /**
@@ -201,4 +191,6 @@ public class FileService {
         // 根据文件服务类 获取对应文件服务 删除文件
         return fileStorageService.delete(fileKey);
     }
+
+
 }
