@@ -1,7 +1,6 @@
 package net.lab1024.sa.admin.module.business.file.controller;
 
 import cn.hutool.extra.servlet.ServletUtil;
-import net.lab1024.sa.admin.module.business.file.domain.form.FileQuery;
 import net.lab1024.sa.admin.module.business.file.domain.form.FileQueryForm;
 import net.lab1024.sa.admin.module.business.file.domain.form.FileUploadForm;
 import net.lab1024.sa.admin.module.business.file.domain.vo.FileUploadVO;
@@ -41,10 +40,6 @@ public class FileController {
         return fileService.downloadByFileKey(fileKey, userAgent);
     }
 
-    @PostMapping("/goods/query")
-    public ResponseDTO<PageResult<FileVO>> query(@RequestBody FileQueryForm query) {
-        return ResponseDTO.ok(fileService.queryPage(query));
-    }
 
 
 }

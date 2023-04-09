@@ -8,8 +8,6 @@ import net.lab1024.sa.common.common.code.SystemErrorCode;
 import net.lab1024.sa.common.common.domain.ResponseDTO;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
