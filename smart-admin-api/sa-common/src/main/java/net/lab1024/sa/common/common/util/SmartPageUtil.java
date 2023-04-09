@@ -10,15 +10,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * 分页工具类
- *
- * @Author 1024创新实验室-主任: 卓大
- * @Date 2020-04-23 20:51:40
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ）
- */
+
 public class SmartPageUtil {
 
     /**

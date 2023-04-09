@@ -5,10 +5,9 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import lombok.extern.slf4j.Slf4j;
 import net.lab1024.sa.admin.module.business.category.dao.CategoryDao;
-import net.lab1024.sa.admin.module.business.category.domain.entity.CategoryEntity;
 import net.lab1024.sa.admin.module.business.category.domain.dto.CategorySimpleDTO;
+import net.lab1024.sa.admin.module.business.category.domain.entity.CategoryEntity;
 import net.lab1024.sa.admin.module.business.category.manager.CategoryCacheManager;
-import net.lab1024.sa.common.common.constant.StringConst;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,15 +16,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/**
- * 类目 查询 业务类
- *
- * @Author 1024创新实验室: 胡克
- * @Date 2021/08/05 21:26:58
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ），2012-2022
- */
+
 @Service
 @Slf4j
 public class CategoryQueryService {
@@ -49,9 +40,7 @@ public class CategoryQueryService {
             return Optional.empty();
         }
         CategoryEntity entity = categoryCacheManager.queryCategory(categoryId);
-        if (null == entity || entity.getDeletedFlag()) {
-            return Optional.empty();
-        }
+
         return Optional.of(entity);
     }
 
@@ -133,9 +122,7 @@ public class CategoryQueryService {
      */
     public String queryCategoryName(Long categoryId) {
         CategoryEntity categoryEntity = categoryCacheManager.queryCategory(categoryId);
-        if (null == categoryEntity || categoryEntity.getDeletedFlag()) {
-            return null;
-        }
+
         return categoryEntity.getCategoryName();
     }
 
@@ -147,9 +134,7 @@ public class CategoryQueryService {
      */
     public CategorySimpleDTO queryCategoryInfo(Long categoryId) {
         CategoryEntity categoryEntity = categoryCacheManager.queryCategory(categoryId);
-        if (null == categoryEntity || categoryEntity.getDeletedFlag()) {
-            return null;
-        }
+
         String fullName = this.queryFullName(categoryId);
         // 返回DTO
         CategorySimpleDTO categoryDTO = new CategorySimpleDTO();
@@ -170,9 +155,6 @@ public class CategoryQueryService {
     public List<CategoryEntity> queryCategoryAndParent(Long categoryId) {
         List<CategoryEntity> parentCategoryList = Lists.newArrayList();
         CategoryEntity categoryEntity = categoryCacheManager.queryCategory(categoryId);
-        if (null == categoryEntity || categoryEntity.getDeletedFlag()) {
-            return parentCategoryList;
-        }
 
         // 父级始终放在第一位
         parentCategoryList.add(0, categoryEntity);
@@ -194,7 +176,7 @@ public class CategoryQueryService {
         List<CategoryEntity> parentCategoryList = this.queryCategoryAndParent(categoryId);
         // 拼接父级类目名称 斜杠分隔返回
         List<String> nameList = parentCategoryList.stream().map(CategoryEntity::getCategoryName).collect(Collectors.toList());
-        return StrUtil.join(StringConst.SEPARATOR_SLASH, nameList);
+        return StrUtil.join("/", nameList);
     }
 
     /**

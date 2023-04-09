@@ -1,15 +1,83 @@
 server:
+  tomcat:
+    basedir: /home/smart_admin_v2/smart_admin_v2/tomcat-logs
+    accesslog:
+      enabled: true
+      pattern: '%t %{X-Forwarded-For}i %a "%r" %s %D (%D ms)'
   servlet:
     context-path: '/'
-  port: 1024
+  port: 8080
 spring:
   profiles:
-    active: '@profiles.active@'
-# 项目配置
-project:
-  name: sa-admin
-  module: net.lab1024.sa.admin.module
-# swagger文档
-swagger:
-  host: localhost:${server.port}
-  tag-class: net.lab1024.sa.admin.constant.AdminSwaggerTagConst
+    active: 'prod'
+
+
+  # 数据库连接信息
+  datasource:
+    url: jdbc:mysql://156.247.10.100:3306/smart_admin_v2?autoReconnect=true&useServerPreparedStmts=false&rewriteBatchedStatements=true&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: Jinzhao2023!@#
+    initial-size: 10
+    min-idle: 10
+    max-active: 100
+    max-wait: 60000
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    filters: stat
+    druid:
+      username: druid
+      password: 1024
+      login:
+        enabled: true
+      method:
+        pointcut: net.lab1024.sa..*Service.*
+
+
+
+
+  # 上传文件大小配置
+  servlet:
+    multipart:
+      max-file-size: 30MB
+      max-request-size: 30MB
+
+  # json序列化相关配置
+  jackson:
+    serialization:
+      write-enums-using-to-string: true
+      write-dates-as-timestamps: false
+    deserialization:
+      read-enums-using-to-string: true
+      fail-on-unknown-properties: false
+    default-property-inclusion: always
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+
+
+# tomcat 配置，主要用于 配置 访问日志（便于将来排查错误）
+
+
+
+
+
+# 文件上传 配置
+file:
+  storage:
+    mode: cloud
+    local:
+      path: /home/smart_admin_v2/upload/
+    cloud:
+      region: oss-cn-qingdao
+      endpoint: oss-cn-qingdao.aliyuncs.com
+      bucket-name: common-sit
+      access-key:
+      secret-key:
+      url:
+        expire: 7200000
+        public: https://${file.storage.cloud.bucket-name}.${file.storage.cloud.endpoint}/
+
+
+
+# 跨域配置
+access-control-allow-origin: '*'

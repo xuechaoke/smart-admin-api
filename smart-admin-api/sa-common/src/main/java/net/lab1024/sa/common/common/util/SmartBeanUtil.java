@@ -10,15 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-/**
- * bean相关工具类
- *
- * @Author 1024创新实验室-主任: 卓大
- * @Date 2018-01-15 10:48:23
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ）
- */
+
 public class SmartBeanUtil {
 
     /**

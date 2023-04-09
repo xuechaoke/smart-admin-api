@@ -6,15 +6,7 @@ import net.lab1024.sa.common.common.code.ErrorCode;
 import net.lab1024.sa.common.common.code.UserErrorCode;
 import org.apache.commons.lang3.StringUtils;
 
-/**
- * 请求返回对象
- *
- * @Author 1024创新实验室-主任: 卓大
- * @Date 2021-10-31 21:06:11
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ）
- */
+
 @Data
 public class ResponseDTO<T> {
 

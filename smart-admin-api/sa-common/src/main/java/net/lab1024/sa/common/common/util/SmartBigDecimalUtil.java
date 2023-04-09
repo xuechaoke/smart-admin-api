@@ -3,15 +3,7 @@ package net.lab1024.sa.common.common.util;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-/**
- * BigDecimal 工具类
- *
- * @Author 1024创新实验室: 胡克
- * @Date 2018/01/17 13:54
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ）
- */
+
 public class SmartBigDecimalUtil {
 
     /**

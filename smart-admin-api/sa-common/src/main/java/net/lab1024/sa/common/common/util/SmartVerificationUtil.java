@@ -2,15 +2,7 @@ package net.lab1024.sa.common.common.util;
 
 import java.util.regex.Pattern;
 
-/**
- * 验证工具类
- *
- * @Author 1024创新实验室: 胡克
- * @Date 2017/11/06 10:54
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ）
- */
+
 public class SmartVerificationUtil {
 
     /**

@@ -10,15 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * 错误码 注册容器
- *
- * @Author 1024创新实验室-主任: 卓大
- * @Date 2021/09/27 22:09
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ）
- */
+
 class ErrorCodeRangeContainer {
 
     /**

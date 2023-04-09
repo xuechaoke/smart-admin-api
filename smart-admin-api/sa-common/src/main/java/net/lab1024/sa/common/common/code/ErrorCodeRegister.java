@@ -2,18 +2,7 @@ package net.lab1024.sa.common.common.code;
 
 import static net.lab1024.sa.common.common.code.ErrorCodeRangeContainer.register;
 
-/**
- * 注册code状态码 <br>
- * ps：为什么要在此处不那么优雅的手动注册？
- * 主要是为了能统一、清晰、浏览当前定义的所有状态码
- * 方便后续维护
- *
- * @Author 1024创新实验室-主任: 卓大
- * @Date 2021/09/27 23:09
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ）
- */
+
 public class ErrorCodeRegister {
 
     static {

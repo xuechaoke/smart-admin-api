@@ -21,15 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-/**
- * 类目
- *
- * @Author 1024创新实验室: 胡克
- * @Date 2021/08/05 21:26:58
- * @Wechat zhuoda1024
- * @Email lab1024@163.com
- * @Copyright 1024创新实验室 （ https://1024lab.net ），2012-2022
- */
+
 @Service
 public class CategoryService {
 
@@ -59,7 +51,6 @@ public class CategoryService {
         Long parentId = null == addForm.getParentId() ? NumberUtils.LONG_ZERO : addForm.getParentId();
         categoryEntity.setParentId(parentId);
         categoryEntity.setSort(null == addForm.getSort() ? 0 : addForm.getSort());
-        categoryEntity.setDeletedFlag(false);
 
         // 保存数据
         categoryDao.insert(categoryEntity);
@@ -89,8 +80,6 @@ public class CategoryService {
          * 不更新类目类型
          * 不更新父类id
          */
-        Integer categoryType = optional.get().getCategoryType();
-        categoryEntity.setCategoryType(categoryType);
         categoryEntity.setParentId(optional.get().getParentId());
 
         ResponseDTO<String> responseDTO = this.checkCategory(categoryEntity, true);
@@ -114,7 +103,6 @@ public class CategoryService {
     private ResponseDTO<String> checkCategory(CategoryEntity categoryEntity, boolean isUpdate) {
         // 校验父级是否存在
         Long parentId = categoryEntity.getParentId();
-        Integer categoryType = categoryEntity.getCategoryType();
         if (null != parentId) {
             if (Objects.equals(categoryEntity.getCategoryId(), parentId)) {
                 return ResponseDTO.userErrorParam("父级类目怎么和自己相同了");
@@ -126,9 +114,7 @@ public class CategoryService {
                 }
 
                 CategoryEntity parent = optional.get();
-                if (!Objects.equals(categoryType, parent.getCategoryType())) {
-                    return ResponseDTO.userErrorParam("与父级类目类型不一致");
-                }
+
             }
 
         } else {
@@ -139,9 +125,7 @@ public class CategoryService {
         // 校验同父类下 名称是否重复
         CategoryEntity queryEntity = new CategoryEntity();
         queryEntity.setParentId(parentId);
-        queryEntity.setCategoryType(categoryType);
         queryEntity.setCategoryName(categoryEntity.getCategoryName());
-        queryEntity.setDeletedFlag(false);
         queryEntity = categoryDao.selectOne(queryEntity);
         if (null != queryEntity) {
             if (isUpdate) {
@@ -209,7 +193,6 @@ public class CategoryService {
         // 更新数据
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setCategoryId(categoryId);
-        categoryEntity.setDeletedFlag(true);
         categoryDao.updateById(categoryEntity);
 
         // 更新缓存
